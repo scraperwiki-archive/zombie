@@ -23,6 +23,7 @@ class XMLHttpRequest
     @statusText   = null
     @responseText = null
     @responseXML  = null
+    @withCredentials = false
 
   # Aborts the request if it has already been sent.
   abort: ->
@@ -84,8 +85,6 @@ class XMLHttpRequest
       url.host = "#{url.hostname}:#{url.port}"
     else
       url.host = url.hostname
-    unless url.host == @_window.location.host
-      throw new HTML.DOMException(HTML.SECURITY_ERR, "Cannot make request to different domain")
     url.hash = null
     if user
       url.auth = "#{user}:#{password}"
